@@ -1,0 +1,107 @@
+body{
+font-family:Arial;
+background-color:#1f4a73;
+margin:0px;		
+}
+#nee{
+				Border-radius:8px;
+				background-color:silver ;
+				padding:5px;
+				}
+#imgg{
+				float:right;
+				Width:80px;
+				height:100px;
+				}
+#tex{
+				font-size:18px ;
+				   font-weight: 700; 
+				}
+#sss{
+				padding :1%;
+				margin:auto ;
+				margin-top:20px;
+				margin-bottom :20px;
+				width :70%;
+				height :;
+				background-color :#347abd ;
+				Border-radius:10px ;
+				box-shadow:0px 0px 15px Black;
+				}
+#ww{
+				display:flex ;
+				flex-wrap:wrap ;
+				justify-content:space-around;
+				align-item:center ;
+				}
+
+a{
+				text-decoration: none;
+				color :Black ;
+				}
+a:visited{
+				Color :Black ;
+				}
+header{
+				Background-color:#347abd ;
+				padding:10px;
+				display:flex ;
+				flex-wrap:wrap ;
+				justify-content:space-around;
+				align-item:center ;
+				box-shadow:0px 0px 15px Black;
+				}
+Footer{
+				Background-color:#347abd ;
+				padding:10px;
+				display:flex ;
+				flex-wrap:wrap ;
+				
+				
+				box-shadow:0px 0px 15px Black;
+			} 
+#s{
+				margin :10px;
+				
+				padding:10px ;
+				background-color :#1f4a73 ;
+				Border-radius :10px ;
+				
+				text-align:center ;
+				}
+main{
+				display:flex ;
+				flex-wrap:wrap ;
+				justify-content:space-between;
+				align-item:center ;
+				}
+
+
+#ss{
+				
+				margin :10px ;
+				margin-bottom:-10px;
+				}
+
+@media screen and (max-width: 500px) {
+         body {
+            background: grey ;
+         }
+         #s{
+         				width :200px;
+         				Background-color :white ;
+         				} 
+         #sss {
+         				Width :100%;
+         				
+         				padding :5px ;
+         				Border-radius:0;
+         				}
+         
+         				
+         				
+         				
+         				
+         				
+         				}
+         		
