@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>game</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style type="text/css">
+    	@-ms-viewport {width: device-width; height: device-height;}
+    	body{
+    		background-color: black;
+    		color: white;
+    		margin: 0px;
+    		padding: 0px;
+    		font-family: "UD Digi Kyokasho NP-B","GardensC";
+    	}
+    	#d1{
+    		display: table;
+    		width: 100%;
+    		height: 100vh;
+    		align-items: center;
+    		vertical-align: middle;
+    		text-align: center;
+    		margin: auto;
+            background-size: 100% 100%;
+            background-color: #407aa2;
+    	}
+    	#d3{
+    		display: none;
+    		width: 100%;
+    		height: 100vh;
+    		align-items: center;
+    		vertical-align: middle;
+    		text-align: center;
+    		margin: auto;
+            background-size: 100% 100%;
+            background-color: #407aa2;
+    	}
+    	#d2{
+    		display: none;
+    		background-color: #76bccb;
+    		width: 100%;
+    		height: 100vh;
+    	}
+    	h1{
+    		display: table-cell;
+    		align-items: center;
+    		vertical-align: middle;
+    		text-align: center;
+    		height: 100%;
+    		margin: auto;
+    	}
+    	#n{
+    		font-size: 50px;
+    		cursor: default;
+    	}
+    	span{
+    		cursor: pointer;
+    		transition: .2s all;
+    	}
+    	span:hover{
+    		text-shadow: 5px 5px 5px;
+    	}
+    	#gam{
+    		background-color: silver;
+    		display: inline-flex;
+    		padding: 15px 20px;
+    		margin-left: 20px ;
+    		margin-top: 20px ;
+    		font-family: arial;
+    		font-weight: bolder;
+    		opacity: .5;
+    		transition: .2s all;
+    		cursor: pointer;
+    		position: fixed;
+    		border-radius: 100%;
+    		z-index: 2;
+    	}
+    	#gam:hover{
+    		opacity: 1;
+
+    	}
+    	#player{
+    		background-color: grey;
+    		width: 20px;
+    		height: 20px;
+    		position: absolute;
+    		top: 200px;
+    		left: 200px;
+    		z-index: 1;
+    	}
+    	#left  {
+    		opacity: .5;
+    		transition: .2s all;
+    		font-size: 50px; 
+    		position: fixed;
+    		bottom: 10px; 
+    		left: 10px;
+    		cursor: pointer;
+    		z-index: 2;
+    	}
+    	#left:hover{
+    		opacity: 1;
+    	}
+    	#right {
+    		opacity: .5;
+    		transition: .2s all;
+    		font-size: 50px; 
+    		position: fixed;
+    		bottom: 10px;
+    		left: 80px;
+    		cursor: pointer;
+    		z-index: 2;
+    	}
+    	#right:hover{
+    		opacity: 1;
+    	}
+    	#top   {
+    		opacity: .5;
+    		transition: .2s all;
+    		font-size: 50px; 
+    		position: fixed; 
+    		bottom: 10px;
+    		left: 150px;
+    		cursor: pointer;
+    		z-index: 2;
+    	}
+    	#top:hover{
+    		opacity: 1;
+    	}
+    	#bottom{
+    		opacity: .5;
+    		transition: .2s all;
+    		font-size: 50px; 
+    		position: fixed; 
+    		bottom: 10px;
+    		left: 220px;
+    		cursor: pointer;
+    		z-index: 2;
+    	}
+    	#bottom:hover{
+    		opacity: 1;
+    	}
+    	#controls{
+    		display: flex;
+    		flex-wrap: wrap;
+    		justify-content: space-around;
+
+    	}
+    </style>
+</head>
+<body onkeydown="eve(event.key)">
+
+	<div id="d1">
+		<h1>
+			<span id="n">Name game</span><br><br><br><br><br>
+			<span onclick="sss()">New game</span><br>
+			<span>Continue</span><br>
+			<span>Settings</span><br>
+			<span>Quit</span>
+		</h1>
+	</div>
+
+	<div id="d3">
+		<h1>
+			<span id="n">pause</span><br><br><br><br><br>
+			<span onclick="sss()">New game</span><br>
+			<span>Continue</span><br>
+			<span>Settings</span><br>
+			<span>Quit</span>
+		</h1>
+	</div>
+
+	<div id="d2" >
+		<div onclick="aaa()" id="gam">II</div>
+		<div id="controls">
+			<div onclick="left()"  id="left">⏪</div>
+			<div onclick="right()" id="right">⏩</div>
+			<div onclick="topp()" id="top">⏫</div>
+			<div onclick="bottomm()" id="bottom">⏬</div>
+		</div>
+
+		<div id="player"></div>
+	</div>
+
+</body>
+<script type="text/javascript">
+		var w=210;
+		var q=210;
+		var pp=3
+		//var t=setTimeout(left,1000);
+		//var t=setInterval(left,100);
+		//clearInterval(t);
+    	function sss() {
+    		document.getElementById('d1').style.display="none";
+    		document.getElementById('d3').style.display="none";
+    		document.getElementById('d2').style.display="table";
+    		pp=0
+    	}
+    	function ppp() {
+    		document.getElementById('d2').style.display="none";
+    		document.getElementById('d3').style.display="none";
+    		document.getElementById('d1').style.display="table";
+    		pp=1
+    	}
+    	function aaa() {
+    		document.getElementById('d1').style.display="none";
+    		document.getElementById('d2').style.display="none";
+    		document.getElementById('d3').style.display="table";
+    		pp=1
+    	}
+    	function eve(arg) {
+    		if (arg=='Escape' && pp==1) {
+    			sss();
+    		}
+    		else if (arg=='Escape' && pp==0) {
+    			aaa();
+    		}
+
+
+    		if (pp==0) {
+	    		if (arg=='a') {left();}
+	    		if (arg=='d') {right();}
+	    		if (arg=='w') {topp();}
+	    		if (arg=='s') {bottomm();}
+    		}
+    	}
+    	function left(x=w-20) {
+	    	f=document.getElementById('player');
+	    	f.style.left=x+'px';
+	    	w=w-10;
+    	}
+    	function right(x=w) {
+    		f=document.getElementById('player');
+    		f.style.left=x+'px';
+    		w=w+10;
+    	}
+    	function topp(y=q-20) {
+    		f=document.getElementById('player');
+    		f.style.top=y+'px';
+    		q=q-10;
+    	}
+    	function bottomm(y=q) {
+    		f=document.getElementById('player');
+    		f.style.top=y+'px';
+    		q=q+10;
+    	}
+</script>
+</html>
+<!--   onclick="left()"   -->
