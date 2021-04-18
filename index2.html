@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Drag and Drop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <script>
+function _(id) {
+    return document.getElementById(id);
+}
+
+var droppedIn = false;
+
+window.onload = function () {
+    
+    var object1 = _('object1');
+    var object2 = _('object2');
+    var object3 = _('object3');
+    var object4 = _('object4');
+
+    var activeEvent = '';
+    var originalX = '';
+    var originalY = '';
+
+    //object1.addEventListener('dragstart', handleDragStart, false);
+    //object1.addEventListener('dragend', handleDragEnd, false);
+    object1.addEventListener('touchstart', handleTouchStart, false);
+    //object1.addEventListener('touchmove', handleTouchMove, false);
+    object1.addEventListener('touchend', handleTouchEnd, false);
+
+    //object2.addEventListener('dragstart', handleDragStart, false);
+    //object2.addEventListener('dragend', handleDragEnd, false);
+    object2.addEventListener('touchstart', handleTouchStart, false);
+    //object2.addEventListener('touchmove', handleTouchMove, false);
+    object2.addEventListener('touchend', handleTouchEnd, false);
+
+    //object3.addEventListener('dragstart', handleDragStart, false);
+    //object3.addEventListener('dragend', handleDragEnd, false);
+    object3.addEventListener('touchstart', handleTouchStart, false);
+    //object3.addEventListener('touchmove', handleTouchMove, false);
+    object3.addEventListener('touchend', handleTouchEnd, false);
+
+    //object4.addEventListener('dragstart', handleDragStart, false);
+    //object4.addEventListener('dragend', handleDragEnd, false);
+    object4.addEventListener('touchstart', handleTouchStart, false);
+    //object4.addEventListener('touchmove', handleTouchMove, false);
+    object4.addEventListener('touchend', handleTouchEnd, false);
+
+   /* function handleDragStart(e) {
+
+        e.dataTransfer.dropEffect = "move";
+        e
+            .dataTransfer
+            .setData("text", e.target.getAttribute('id'));
+    }*/
+
+    /*function handleDragEnd(e) {
+        if (droppedIn == false) {
+
+        }
+        droppedIn = false;
+    }*/
+
+    function handleTouchStart(e) {
+        originalX = (e.target.offsetLeft - 10) + "px";
+        originalY = (e.target.offsetTop - 10) + "px";
+        activeEvent = 'start';
+        console.log('111');
+    }
+
+    /*function handleTouchMove(e) {
+        var touchLocation = e.targetTouches[0];
+        var pageX = (touchLocation.pageX - 50) + "px";
+        var pageY = (touchLocation.pageY - 50) + "px";
+        e.target.style.position = "absolute";
+        e.target.style.left = pageX;
+        e.target.style.top = pageY;
+        activeEvent = 'move';
+    }*/
+
+    function handleTouchEnd(e) {
+        if (activeEvent === 'move') {
+            var pageX = (parseInt(e.target.style.left) - 50);
+            var pageY = (parseInt(e.target.style.top) - 50);
+        }
+        console.log('000');
+    }
+
+    /*function detectTouchEnd(x1, y1, x2, y2, w, h) {
+        if (x2 - x1 > w) 
+            return false;
+        if (y2 - y1 > h) 
+            return false;
+        return true;
+    }*/
+}
+    </script>
+    <style>
+.objects {
+   Background-color:grey;
+   Width:100px;
+   Height:100px;
+}
+#drop_zone{
+   	Width:200px;
+   	Height:200px;
+   	background:green;
+}
+</style>
+</head>
+<body>  
+    <div id="object1" class="objects" draggable="true">Object 1</div>
+    <div id="object2" class="objects" draggable="true">Object 2</div>
+    <div id="object3" class="objects" draggable="true">Object 3</div>
+    <div id="object4" class="objects" draggable="true">Object 4</div>
+</body>
+</html>
