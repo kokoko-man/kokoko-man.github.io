@@ -1,0 +1,627 @@
+<!--  проверка координат -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>game</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style type="text/css">
+    	@-ms-viewport {width: device-width; height: device-height;}
+    	html,body,#d2{
+    		margin: 0 !important;
+    		padding: 0 !important;
+    	}
+    	/*p{
+    		margin: 0 !important;
+    		padding: 0 !important;
+    	}
+
+    	#d2,#d22{
+    		margin:50px: 
+    	}*/
+    	body{
+    		opacity: .0;
+    		background-color: black;
+    		color: silver;
+    		margin: 0px;
+    		padding: 0px;
+    		font-family: "UD Digi Kyokasho NP-B","GardensC";
+    	}
+    	#d1{
+    		display: table;
+    		width: 100%;
+    		height: 100vh;
+    		align-items: center;
+    		vertical-align: middle;
+    		text-align: center;
+    		margin: auto;
+            background-size: 100% 100%;
+            background-color: black;
+    	}
+    	#d3{
+    		display: none;
+    		width: 100%;
+    		height: 100vh;
+    		align-items: center;
+    		vertical-align: middle;
+    		text-align: center;
+    		margin: auto;
+            background-size: 100% 100%;
+            background-color: black;
+    	}
+    	#d2{
+    		display: none;
+    		background-color: black;
+    		width: 100%;
+    		height: 100vh;
+    	}
+    	h1{
+    		display: table-cell;
+    		align-items: center;
+    		vertical-align: middle;
+    		text-align: center;
+    		height: 100%;
+    		margin: auto;
+    	}
+    	#n{
+    		font-size: 50px;
+    		cursor: default;
+    	}
+    	span{
+    		cursor: pointer;
+    		transition: .2s all;
+    	}
+    	span:hover{
+    		text-shadow: 5px 5px 5px;
+    	}
+    	#gam{
+    		background-color: silver;
+    		display: inline-flex;
+    		margin: 10px;
+    		width: 50px;
+    		height: 50px;
+    		opacity: .5;
+    		transition: .2s all;
+    		cursor: pointer;
+    		position: fixed;
+    		border-radius: 100%;
+    		z-index: 2;
+    	}
+    	#gam:hover{
+    		opacity: 1;
+    	}
+    	#left  {
+    		opacity: .5;
+    		transition: .2s all;
+    		border-radius: 100%;
+    		width: 50px;
+    		height: 50px;
+    		background-color: silver;
+    		position: fixed;
+    		bottom: 83px; 
+    		left: 10px;
+    		cursor: pointer;
+    		z-index: 2;
+    	}
+    	#left:hover{
+    		opacity: 1;
+    	}
+    	#right {
+    		opacity: .5;
+    		transition: .2s all;
+    		width: 50px;
+    		height: 50px;
+    		background-color: silver;
+    		border-radius: 100%;
+    		position: fixed;
+    		bottom: 83px;
+    		left: 150px;
+    		cursor: pointer;
+    		z-index: 2;
+    	}
+    	#right:hover{
+    		opacity: 1;
+    	}
+    	#top   {
+    		opacity: .5;
+    		transition: .2s all;
+    		width: 50px;
+    		height: 50px;
+    		background-color: silver;
+    		border-radius: 100%;
+    		position: fixed; 
+    		bottom: 157px;
+    		left: 80px;
+    		cursor: pointer;
+    		z-index: 2;
+    	}
+    	#top:hover{
+    		opacity: 1;
+    	}
+    	#bottom{
+    		opacity: .5;
+    		transition: .2s all;
+    		width: 50px;
+    		height: 50px;
+    		background-color: silver;
+    		border-radius: 100%;
+    		position: fixed; 
+    		bottom: 10px;
+    		left: 80px;
+    		cursor: pointer;
+    		z-index: 2;
+    	}
+    	#bottom:hover{
+    		opacity: 1;
+    	}
+    	#controls{
+    		display: flex;
+    		flex-wrap: wrap;
+    		justify-content: space-around;
+    	}
+    	canvas{
+			margin-bottom: -100px;
+		}
+    	/*#d2222{
+    		width: 500px;
+    		height: 500px;
+    	}*/
+    </style>
+</head>
+<body id="man" onkeydown="eve(event.key)" onkeyup="eve1(event.key)">
+	<div id="d1">
+		<h1>
+			<span id="n">Name game</span><br><br><br><br><br>
+			<span onclick="sss()">New game</span><br>
+			<span>Continue</span><br>
+			<span>Settings</span><br>
+			<span>Quit</span>
+		</h1>
+	</div>
+	<div id="d3">
+		<h1>
+			<span id="n">pause</span><br><br><br><br><br>
+			<span>New game</span><br>
+			<span onclick="sss()">Continue</span><br>
+			<span>Settings</span><br>
+			<span>Quit</span>
+		</h1>
+	</div>
+	<div id="d2">
+		<div onclick="aaa()" id="gam"></div>
+		<div onmouseover="l1=true;left();" onmouseleave="l1=false" onmouseup="l1=false" id="left"></div>
+		<div onmouseover="r1=true;right();" onmouseleave="r1=false" onmouseup="r1=false" id="right"></div>
+		<div onmouseover="t1=true;topp();" onmouseleave="t1=false" onmouseup="t1=false" id="top"></div>
+		<div onmouseover="b1=true;bottomm();" onmouseleave="b1=false" onmouseup="b1=false" id="bottom"></div>
+		<canvas width="500" height="500" id="d22"></canvas>
+	</div>
+</body>
+<script type="text/javascript">
+		var w=210;
+		var q=210;
+		var pp=3;
+		var co=0;
+		var l1=false;
+		var r1=false;
+		var t1=false;
+		var b1=false;
+		var mapx=0;
+		var mapy=0;
+		var playerx=200//document.body.clientWidth/2;//50////100;700//
+		var playery=800//document.body.clientHeight/2;//800////100;900//
+		//console.log(playerx,playery)
+		var can=document.getElementById('d22');
+		//can.width=window.screen.width;
+		//can.height=window.screen.height;
+		//can.width=window.innerWidth;
+		//can.height=window.innerHeight;
+
+		can.width=document.body.clientWidth;//-5
+		can.height=document.body.clientHeight;//-5-3.9999999
+
+        //console.log(can.width)
+
+		backw=document.body.clientWidth;
+		backh=document.body.clientHeight;//-3.9999999
+
+		/*var cto=can.getContext("2d");
+		cto.fillStyle="#847d8a";
+		cto.fillRect(0,0,backw,backh);*/
+
+		karta=[["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","w","w","w","w","w","w","w","w","w","b","b","b","b","b","b","b","b","b","b","b","b","b","b","w","w","w","b","w","b","b","b","b","b","w","w","w","w","w","w","w","w","w","w","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","w","b","b","w","w","w","b","b","b","w","w","w","w","b","b","b","w","w","w","w","w","w","w","w","w","w","w","w","b","b"],
+		       ["b","w","w","w","w","w","w","w","w","w","w","w","w","b","b","w","w","w","w","w","w","w","w","w","w","w","w","w","w","b","b","b","b","b","w","w","w","w","w","w","w","w","w","w","w","w","b","b","b","b","b","b","b","w","w","w","w","w","w","w","w","b","b","w","w","w","w","w","w","w","w","w","w","w","b","b","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","b"],
+		       ["b","b","w","w","w","w","w","w","w","w","w","w","b","b","b","b","w","w","w","w","w","w","w","w","w","w","w","w","w","w","b","b","b","w","w","w","w","w","w","w","w","w","w","w","w","w","w","b","b","b","b","b","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","b","b","b","b","w","w","w","w","w","w","w","w","w","w","w","w","w","w","b"],
+		       ["b","b","b","b","w","w","w","w","w","w","w","b","b","b","b","b","b","w","w","w","w","w","w","w","w","w","w","w","w","b","b","b","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","b","b","b","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","b","b","b","b","b","b","b","w","w","w","w","w","w","w","w","w","w","w","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","w","w","w","w","w","w","w","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","w","w","w","w","w","w","w","w","w","w","w","w","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+	               ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","r","r","f","f","f","f","f","f","f","f","f","f","f","f","f","f","r","r","r","r","r","r","r","f","f","f","f","f","f","f","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","z","z","f","c","c","c","c","c","f","c","c","c","c","c","c","f","z","z","z","z","z","z","z","f","z","z","z","z","z","f","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","r","r","f","c","c","c","c","c","f","c","c","c","c","c","c","f","r","r","r","r","r","r","r","f","r","r","r","r","r","f","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","z","z","f","c","c","c","c","c","f","c","c","c","c","c","c","f","z","z","z","z","z","z","z","f","z","z","z","z","z","f","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","r","r","f","c","c","c","c","c","f","c","c","c","c","c","c","f","r","r","r","r","r","r","r","f","r","r","r","r","r","f","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","z","z","f","f","f","f","f","f","f","f","f","f","f","f","f","f","z","z","z","z","z","z","z","f","z","f","z","z","z","f","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","f","r","r","r","r","r","f","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","f","z","z","z","z","z","f","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z"],
+		       ["b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","f","r","r","r","r","r","f","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r"],
+		       ["g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","f","z","z","z","z","z","f","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z","z"],
+		       ["k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g"],
+		       ["k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k"],
+		       ["g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k"],
+		       ["k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g"],
+		       ["k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k"],
+      		       ["g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k"],
+		       ["k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g","k","k","g"],]
+      		       gran = [] 
+
+        function kar() {
+    gran = [] 
+		var cto=can.getContext("2d");
+		xm=0
+		ym=0//playery-800
+		for (var i = 0; i < karta.length; i++) {
+			
+			xm=0//playerx-800
+			for (var ii = 0; ii < karta[i].length; ii++) {
+				if (karta[i][ii]=="w") {
+				    cto.fillStyle="#fff";
+				}
+				else if (karta[i][ii]=="c") {
+					cto.fillStyle="#1680e9";
+				}
+				else if (karta[i][ii]=="r") {
+					cto.fillStyle="#800000";
+				}
+				else if (karta[i][ii]=="k") {
+					cto.fillStyle="#079828";
+					gran.push([xm,ym]);
+				}
+				else if (karta[i][ii]=="g") {
+					cto.fillStyle="#008000";
+					gran.push([xm,ym]);
+				}
+				else if (karta[i][ii]=="f") {
+					cto.fillStyle="#400000";
+				}
+				else if (karta[i][ii]=="z") {
+					cto.fillStyle="#804000";
+				}
+				else if (karta[i][ii]=="b") {
+					cto.fillStyle="#69bcd8";
+				}
+				cto.fillRect(xm,ym,20,20);
+				xm=xm+20
+				
+			}
+			ym=ym+20
+		}
+		//console.log(playerx, playery) // игрок отдельно от карты
+		//console.log(mapx, mapy) // сдвиг карты
+		//console.log(xm, ym) // размер карты // статич
+		//console.log(gran) // область передвижения // статич
+		//console.log(mapx-playerx, mapy-playery)
+		//200,800
+		 
+		
+	
+		
+}
+		kar()
+		
+		//cto.fillStyle="#847d8a";
+		//cto.fillRect(0,0,backw,backh);
+		
+		var ctx=can.getContext("2d");
+		ctx.fillStyle="#fff";
+		ctx.fillRect(playerx,playery,20,20);
+		
+		/*var ctr=can.getContext("2d");
+		ctr.beginPath();
+		ctr.arc(20,20,10,0,360);
+		ctr.fill();
+		ctr.stroke();*/
+
+		//ctr.fillStyle="#161666";
+		//playr=document.getElementById('player');
+		//playr.addEventListener("mousedown",left);
+		//var t=setTimeout(left,1000);
+		//var t=setInterval(left,100);
+		//clearInterval(t);
+		//element.addEventListener("click",func,bool)
+    	function sss() {
+    		document.getElementById('d1').style.display="none";
+    		document.getElementById('d3').style.display="none";
+    		document.getElementById('d2').style.display="table";
+    		pp=0;
+    	}
+    	function ppp() {
+    		document.getElementById('d2').style.display="none";
+    		document.getElementById('d3').style.display="none";
+    		document.getElementById('d1').style.display="table";
+    		pp=1;
+    	}
+    	function aaa() {
+    		document.getElementById('d1').style.display="none";
+    		document.getElementById('d2').style.display="none";
+    		document.getElementById('d3').style.display="table";
+    		pp=1;
+    	}
+    	/*function eve1(argu) {
+    		if (pp==pp) {
+	    		if (argu=='a') {l1=false;}
+	    		if (argu=='d') {r1=false;}
+	    		if (argu=='w') {t1=false;}
+	    		if (argu=='s') {b1=false;}
+    		}
+    	}*/
+    	function eve1(argu) {
+	    	l1=false;
+	    	r1=false;
+	    	t1=false;
+	    	b1=false;
+    	}
+    	function eve(arg) {
+    		if (arg=='Escape' && pp==1) {
+    			sss();
+    		}
+    		else if (arg=='Escape' && pp==0) {
+    			aaa();
+    		}
+    		if (pp==0) {
+	    		if (arg=='a') {l1=true;left();}
+	    		if (arg=='d') {r1=true;right();}
+	    		if (arg=='w') {t1=true;topp();}
+	    		if (arg=='s') {b1=true;bottomm();}
+    		}
+    	}
+    	
+    	
+    	
+    	
+    	
+    	function left(x=w-20) {
+    		
+							for (i=0;i<=gran.length-1;i++) {
+						
+						if (
+(playerx-10 == gran[i][0] && playery+10 == gran[i][1])	||
+(playerx-10 == gran[i][0] && playery-10 == gran[i][1])	|| 
+(playerx-10 == gran[i][0] && playery == gran[i][1])	|| (playerx+10 == gran[i][0] && playery == gran[i][1])	||  (playerx == gran[i][0] && playery == gran[i][1]) || 
+(playerx == gran[i][0] && playery-10 == gran[i][1])	|| 
+(playerx == gran[i][0] && playery+10 == gran[i][1])	|| (playerx+10 == gran[i][0] && playery+10 == gran[i][1]) || 
+(playerx+10 == gran[i][0] && playery-10 == gran[i][1])
+) {
+										//console.log(playerx, playery);
+										//alert();
+										//console.log(gran[i][0],gran[i][1]);
+										//break;
+														
+					if (l1==true) {// & playerx>10
+		    	//cto.fillStyle="#247d8a";
+		    	//cto.fillRect(0,0,backw,backh);
+		    	mapx += 10
+		    	ctx.translate(10,0)
+		    	playerx=playerx-10;
+		    	kar()
+
+		    	
+		    	ctx.fillStyle="#fff";
+		    	ctx.fillRect(playerx,playery,20,20);
+		    	
+		    	var tim=setTimeout(left,50);
+	    	}else{clearTimeout(tim);}
+    	break;}
+    	
+    	else if (playerx < gran[i][0] && playery == gran[i][1] ) {
+    					console.log(playerx, gran[i][0])
+    					break} 	
+    					
+    	//else if (true) {console.log(gran[i][0])} 
+    	} 
+    	}
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	function right(x=w) {
+    					
+    						for (i=0;i<=gran.length-1;i++) {
+						
+						if (
+(playerx-10 == gran[i][0] && playery+10 == gran[i][1])	||
+(playerx-10 == gran[i][0] && playery-10 == gran[i][1])	|| 
+(playerx-10 == gran[i][0] && playery == gran[i][1])	|| (playerx+10 == gran[i][0] && playery == gran[i][1])	||  (playerx == gran[i][0] && playery == gran[i][1]) || 
+(playerx == gran[i][0] && playery-10 == gran[i][1])	|| 
+(playerx == gran[i][0] && playery+10 == gran[i][1])	|| (playerx+10 == gran[i][0] && playery+10 == gran[i][1]) || 
+(playerx+10 == gran[i][0] && playery-10 == gran[i][1])
+) {
+										//console.log(playerx, playery);
+										//alert();
+										//console.log(gran[i][0],gran[i][1]);
+										//break;
+										 
+    					
+    		if (r1==true) {// & playerx<backw-30
+    			//cto.fillStyle="#247d8a";
+		    	//cto.fillRect(0,0,backw,backh);
+		    	mapx -= 10
+		    	ctx.translate(-10,0)
+		    	playerx=playerx+10;
+		    	kar()
+
+		    	
+		    	ctx.fillStyle="#fff";
+		    	ctx.fillRect(playerx,playery,20,20);
+
+		    	var tim=setTimeout(right,50);
+	    	}
+	    	else{
+	    		clearTimeout(tim);
+	    	}
+	    break;	}
+	    //else if (){break}
+	    } 
+    	}
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	function topp(y=q-20) {
+    					
+    						for (i=0;i<=gran.length-1;i++) {
+						
+						if (
+(playerx-10 == gran[i][0] && playery+10 == gran[i][1])	||
+(playerx-10 == gran[i][0] && playery-10 == gran[i][1])	|| 
+(playerx-10 == gran[i][0] && playery == gran[i][1])	|| (playerx+10 == gran[i][0] && playery == gran[i][1])	||  (playerx == gran[i][0] && playery == gran[i][1]) || 
+(playerx == gran[i][0] && playery-10 == gran[i][1])	|| 
+(playerx == gran[i][0] && playery+10 == gran[i][1])	|| (playerx+10 == gran[i][0] && playery+10 == gran[i][1]) || 
+(playerx+10 == gran[i][0] && playery-10 == gran[i][1])
+) {
+										//console.log(playerx, playery);
+										//alert();
+										//console.log(gran[i][0],gran[i][1]);
+										//break;
+										
+    					
+    					
+    		if (t1==true) {// & playery>777
+    			//cto.fillStyle="#247d8a";
+		    	//cto.fillRect(0,0,backw,backh);
+		    	mapy += 10
+		    	ctx.translate(0,10)
+		    	playery=playery-10;
+		    	kar()
+
+		    	
+		    	ctx.fillStyle="#fff";
+		    	ctx.fillRect(playerx,playery,20,20);
+
+		    	var tim=setTimeout(topp,50);
+	    	}
+	    	else{
+	    		clearTimeout(tim);
+	    	}
+	    	break;}
+	    	//else if () {break}
+	    	} 
+    	}
+    	
+    	
+    	
+    	
+    	
+    	
+    	function bottomm(y=q) {
+    	  for (i=0;i<=gran.length-1;i++) {	
+						if (
+(playerx-10 == gran[i][0] && playery+10 == gran[i][1])	||
+(playerx-10 == gran[i][0] && playery-10 == gran[i][1])	|| 
+(playerx-10 == gran[i][0] && playery == gran[i][1])	|| (playerx+10 == gran[i][0] && playery == gran[i][1])	||  (playerx == gran[i][0] && playery == gran[i][1]) || 
+(playerx == gran[i][0] && playery-10 == gran[i][1])	|| 
+(playerx == gran[i][0] && playery+10 == gran[i][1])	|| (playerx+10 == gran[i][0] && playery+10 == gran[i][1]) || 
+(playerx+10 == gran[i][0] && playery-10 == gran[i][1])
+) {
+										//console.log(playerx, playery);
+										//alert();
+										//console.log(gran[i][0],gran[i][1]);
+										//break;
+								
+										
+    		if (b1==true) {// & playery<backh-30
+    			//cto.fillStyle="#247d8a";
+		    	//cto.fillRect(0,0,backw, backh);
+		    	mapy -=10
+		    	ctx.translate(0,-10)
+		    	playery=playery+10;
+		    	kar()
+
+		    	
+		    	ctx.fillStyle="#fff";
+		    	ctx.fillRect(playerx,playery,20,20);
+
+		    	var tim=setTimeout(bottomm,50);
+	    	}
+	    	else{
+	    		clearTimeout(tim);
+	    	}
+	    	
+	    	
+	    	
+	    	break;}
+	    	//else if () {break}		
+	    	} 
+    	}
+    	
+    	
+    	window.onresize=function(){
+    		//can.width=document.body.clientWidth;
+    		//can.height=document.body.clientHeight;//-3.9999999
+    		backw=document.body.clientWidth;
+		    backh=document.body.clientHeight;//-3.9999999
+    		//cto.fillStyle="#247d8a";
+    		//cto.fillRect(0,0,backw,backh);
+    		kar()
+    		ctx.fillStyle="#fff";
+    		ctx.fillRect(playerx,playery,20,20);	
+    	}
+    	window.onload=function(){
+    		
+    		//window.onresize= 
+    		//can.width=can.offsetWidth;
+    		//can.height=can.offsetHeight;
+    		if (co<=1) {
+	    		ff1=document.getElementById('man');
+	    		ff1.style.opacity=co+0.05;
+	    		co=co+0.05;
+	    		var t1=setTimeout(window.onload,50);
+    		}
+    		else{
+    			clearInterval(t1);
+    		}
+    	}
+</script>
+</html>
+<!--   
+доп 4 кноп на искосок,изменить их
+правильные нажатия
+
+window.
+
+полоса прокрутки
+
+двоеточия сисс и в жс
+
+цикл и фор
+   -->
